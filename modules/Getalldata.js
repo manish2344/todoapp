@@ -1,12 +1,27 @@
 const Todolist = require("../DB/schema");
-const Getalldata = async (req, res, next) => {
-  
+exports.Getalldata = async (req, res) => {
   try {
-    const createdata = await Todolist.find();
+    const createdata = await Todolist.find({}).sort({ createdAt: -1 });;
     res.send(createdata);
-  } catch (err) {
-    res.send(err);
+  }catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = Getalldata;
+
+// exports.getAllTodos = async (req, res) => {
+//   try {
+//     const todos = await Todo.find({}).sort({ createdAt: -1 });
+
+//     try {
+//       res.status(200).json({
+//         message: "Get all todos successfully.",
+//         todos: todos,
+//       });
+//     } catch (error) {
+//       res.status(500).json({ error: error.message });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };

@@ -7,7 +7,7 @@ const todolist = require("./router/Todo");
 var cors = require('cors')
 app.use(express.json());
 app.use(cors()) 
-app.use('/',todolist);
+app.use('/todo',todolist);
 app.get("/",(req,res)=>{
 res.send("hello");
 })
